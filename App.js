@@ -1,16 +1,14 @@
 class App extends React.Component {
 
   state = {
-    text: ""
+    omen: ['pierwsza wróżba', 'druga wróżba', 'trzecia wróżba'],
+    text: null
   }
 
-
-
   handleClicked = () => {
-    const omen = ['pierwsza wróżba', 'druga wróżba', 'trzecia wróżba']
-    const number = Math.floor(Math.random() * 3)
+    const number = Math.floor(Math.random() * this.state.omen.length)
     this.setState({
-      text: omen[number]
+      text: this.state.omen[number]
     })
   }
 
@@ -18,16 +16,10 @@ class App extends React.Component {
     return (
       <div>
         <button onClick={this.handleClicked}>losuj wróżbę</button>
-        <PanelResult text={this.state.text}></PanelResult>
+        {this.state.text ? <h1>{this.state.text}</h1> : null}
       </div>
     );
   }
-}
-
-const PanelResult = (props) => {
-  return (
-    <h1>{props.text}</h1>
-  )
 }
 
 
